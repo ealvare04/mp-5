@@ -18,12 +18,15 @@ export default function NewUrlForm({
                 e.preventDefault(); // prevent form from automatically updating
                 createNewUrl(alias, url)
                     .then((u) => {
-                        if(!u) return;
-                        append(u);
-                    }
-                )
-                .catch((err) => console.error(err));
-        }}
+                            if(!u) {
+                                console.log("Alias already exists!");
+                                return;
+                            }
+                            append(u);
+                        }
+                    )
+                    .catch((err) => console.error(err));
+            }}
         >
             <TextField
                 variant="filled"

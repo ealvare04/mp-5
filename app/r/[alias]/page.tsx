@@ -4,16 +4,20 @@ import {redirect} from "next/navigation";
 export default async function FullUrlPage({params}: {params:Promise<{alias:string}>}) {
     const {alias} = await params;
 
+    let url;
     try {
         // get the url prop
-        const url = await getUrlByAlias(alias);
-        if (url===null){
-            return redirect(`/error`);
-        }
-        return redirect(url.url); // redirect to the long url
+        url = await getUrlByAlias(alias);
     }
     catch (error) {
-        console.log("ERROR: " + error);
+        console.log("ERROR CAUGHT: " + error);
         return redirect(`/error`);
     }
+
+    if (url===null){
+        return redirect(`/error`);
+    }
+
+    console.log("LONG URL: " + url.url);
+    return redirect(url.url); // redirect to the long url
 }

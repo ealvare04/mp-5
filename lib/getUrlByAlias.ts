@@ -3,10 +3,10 @@ import {ObjectId} from "mongodb";
 import getCollection, {URLS_COLLECTION} from "@/db";
 
 export default async function getUrlByAlias(alias:string): Promise<UrlProps|null>{
-    const urlId = ObjectId.createFromHexString(alias);
+    // const urlId = ObjectId.createFromHexString(alias);
 
     const urlCollection = await getCollection(URLS_COLLECTION);
-    const data = await urlCollection.findOne({_id:urlId});
+    const data = await urlCollection.findOne({alias:alias}); // assuming there is only one alias
 
     if (data===null){
         console.log("No object with the alias {" + alias + "} found.")
@@ -15,7 +15,7 @@ export default async function getUrlByAlias(alias:string): Promise<UrlProps|null
 
     return {
         id: data.id,
-        alias: alias,
+        alias: data.alias,
         url: data.url
     };
 
