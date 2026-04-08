@@ -44,6 +44,7 @@ export default function NewUrlForm({
                 variant="soft"
                 placeholder="Long URL"
                 value={url}
+                required={true}
                 onChange={(e) => setUrl(e.target.value)}
             />
             <FormHelperText>What URL would you like to shorten?</FormHelperText>
