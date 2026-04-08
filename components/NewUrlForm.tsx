@@ -18,10 +18,7 @@ export default function NewUrlForm({
                 e.preventDefault(); // prevent form from automatically updating
                 createNewUrl(alias, url)
                     .then((u) => {
-                            if(!u) {
-                                console.log("Alias already exists!");
-                                return;
-                            }
+                            if(!u) return;
                             append(u);
                         }
                     )
@@ -33,6 +30,7 @@ export default function NewUrlForm({
                 sx={{backgroundColor: "white", width: "100%"}}
                 label="Alias"
                 value={alias}
+                required={true}
                 onChange={(e) => setAlias(e.target.value)}
             />
 

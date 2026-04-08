@@ -27,7 +27,7 @@ async function connect(): Promise<Db> {
 export default async function getCollection(collectionName: string): Promise<Collection> {
     // if `db` is not initialized
     if (!db) {
-        db = await connect();
+        db = await connect(); // establish the connection
     }
 
     return db.collection(collectionName);

@@ -15,7 +15,7 @@ export default async function getUrlByAlias(alias:string): Promise<UrlProps|null
 
     return {
         id: data.id,
-        alias: data.alias,
+        alias: alias,
         url: data.url
     };
 }
