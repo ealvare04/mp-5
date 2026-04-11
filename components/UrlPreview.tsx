@@ -8,7 +8,6 @@ export default function UrlPreview({url}: { url: UrlProps}) {
             <CardActionArea component={Link} href={`/r/${url.alias}`}>
                 <CardContent>
                     <Typography variant="h6">{url.alias}</Typography>
-                    <Typography variant="body2">{url.url}</Typography>
                 </CardContent>
             </CardActionArea>
         </Card>
