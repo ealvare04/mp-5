@@ -14,7 +14,7 @@ export default function UrlsDisplay({inputUrls}: {inputUrls: UrlProps[]}){
     }
 
     return (
-        <div>
+        <>
             <NewUrlForm append={append} />
             {
                 urls.map((u) =>
@@ -23,6 +23,6 @@ export default function UrlsDisplay({inputUrls}: {inputUrls: UrlProps[]}){
                     )
                 )
             }
-        </div>
-    );
+        </>
+    )
 }
