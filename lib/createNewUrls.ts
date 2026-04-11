@@ -1,7 +1,7 @@
 "use server";
 
 import {UrlProps} from "@/types";
-import getCollection, {URLS_COLLECTION} from "@/db";
+import getCollection, {URLS_COLLECTION} from "@/lib/db";
 
 async function urlIsValid(url: string):Promise<boolean> {
     try {
@@ -22,7 +22,7 @@ export default async function createNewUrl(alias:string, url:string,):Promise<Ur
     // check if URL is valid
     if (!await urlIsValid(url)) {
         console.log("{" + url + "} is not a valid URL!!!");
-        return null;
+        throw new Error("INVALID_URL");
     }
 
     // check if alias is not already in use
@@ -30,9 +30,8 @@ export default async function createNewUrl(alias:string, url:string,):Promise<Ur
     const data = await urlsCollection.findOne({alias:alias}); // assuming there is only one alias
     if (data!==null){
         console.log("Alias {" + alias + "} already exists!!!");
-        return null;
+        throw new Error("ALIAS_TAKEN");
     }
-
 
     const u = {
         alias: alias,
@@ -42,13 +41,12 @@ export default async function createNewUrl(alias:string, url:string,):Promise<Ur
     const res = await urlsCollection.insertOne(u); // mongo db create one
 
     if (!res.acknowledged){
-        return null; // not successful, don't create a new object
+        return null;
     }
 
     console.log(res);
 
-    // AHA
-    // returns a plain object
+    // return a plain object
     return {
         id: res.insertedId.toString(),
         alias: alias,

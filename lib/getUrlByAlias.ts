@@ -1,6 +1,6 @@
 import {UrlProps} from "@/types";
 // import {ObjectId} from "mongodb";
-import getCollection, {URLS_COLLECTION} from "@/db";
+import getCollection, {URLS_COLLECTION} from "@/lib/db";
 
 export default async function getUrlByAlias(alias:string): Promise<UrlProps|null>{
     // const urlId = ObjectId.createFromHexString(alias);

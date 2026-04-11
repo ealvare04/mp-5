@@ -14,6 +14,7 @@ export default async function FullUrlPage({params}: {params:Promise<{alias:strin
         return redirect(`/error`);
     }
 
+    // moved outside of try/catch block to stop redirect(...) from throwing
     if (url===null){
         return redirect(`/error`);
     }

@@ -1,5 +1,5 @@
 import {UrlProps} from "@/types";
-import getCollection, {URLS_COLLECTION} from "@/db";
+import getCollection, {URLS_COLLECTION} from "@/lib/db";
 
 export default async function getAllUrls():Promise<UrlProps[]>{
 
