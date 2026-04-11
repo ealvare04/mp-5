@@ -5,12 +5,13 @@ import getCollection, {URLS_COLLECTION} from "@/lib/db";
 
 async function urlIsValid(url: string):Promise<boolean> {
     try {
-        const res = await fetch(url, {method: "HEAD"}); // GET but without message body
-        console.log(res.ok);
-        return res.ok; // OK status
-    }
-    catch {
-        return false; // not OK status
+        // const res = await fetch(url, {method: "HEAD"}); // GET but without message body
+        // console.log(res.ok);
+        // return res.ok; // OK status
+        new URL(url);
+        return true;
+    } catch {
+        return false;
     }
 }
 
